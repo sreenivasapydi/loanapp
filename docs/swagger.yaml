@@ -1,0 +1,168 @@
+basePath: /
+definitions:
+  loanapp.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        description: User's preferred name & email.
+        type: string
+    type: object
+  loanapp.UserUpdate:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: Loanapp API Support
+    url: http://www.swagger.io/support
+  description: Testing Swagger APIs.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Loan App Service APIs
+  version: "1.0"
+paths:
+  /example/helloworld:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - example
+  /example/ping:
+    get:
+      consumes:
+      - application/json
+      description: Do a ping
+      produces:
+      - application/json
+      responses: {}
+      summary: Ping example
+      tags:
+      - example
+  /users:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: user ping
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: user JSON
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/loanapp.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/loanapp.User'
+      summary: Create a new user
+      tags:
+      - users
+  /users/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Delete user
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: Returns the user whose ID matches the given ID.
+      parameters:
+      - description: search by id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get single user by ID
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: user update JSON
+        in: body
+        name: userUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/loanapp.UserUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Update user
+      tags:
+      - users
+  /users/ping:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: user ping
+      tags:
+      - users
+schemes:
+- http
+swagger: "2.0"
